@@ -1,0 +1,334 @@
+<!DOCTYPE html> <html lang="EN"> <head> <meta charset="utf-8"> <title>Cl Ktx</title> <style>html body{margin:0 auto 0 auto;padding:20px;max-width:1024px;font-family:sans-serif;font-size:14pt;overflow-y:scroll;}html body a{text-decoration:none;}html body a[href]{color:#0055AA;}html body a[href]:hover{color:#0088EE;}html body pre{background:#FAFAFA;border:1px solid #DDDDDD;padding:0.75em;overflow-x:auto;}html body pre >code a[href]{color:#223388;}article.project h1{font-size:1.7em;}article.project h1,article.project h2,article.project h3,article.project h4,article.project h5,article.project h6{margin:0.2em 0 0.1em 0;text-indent:1em;}article.project >header{text-align:center;}article.project >header img.logo{display:block;margin:auto;max-height:170px;}article.project >header h1{display:inline-block;text-indent:0;font-size:2.5em;}article.project >header .version{vertical-align:bottom;}article.project >header .languages{margin-top:-0.5em;text-transform:capitalize;}article.project >header .description{margin:0;}article.project >header .pages{margin-top:0.5em;font-size:1.2em;text-transform:capitalize;}article.project >header .pages a{display:inline-block;padding:0 0.2em;}article.project >section{margin:1em 0 1em 0;}article.project #index >ul{list-style:none;margin:0;padding:0;}article.project .row label{display:inline-block;min-width:8em;}article.project #system .row{display:flex;}article.project #system #dependencies{display:inline;margin:0;padding:0;}article.project #system #dependencies li{display:inline;padding:0 0.2em;}article.project #system #author label{vertical-align:top;}article.project #system #author ul{display:inline-block;margin:0;padding:0;list-style:none;}article.definition{margin:1em 0 0 0;}article.definition >header h1,article.definition >header h2,article.definition >header h3,article.definition >header h4,article.definition >header h5,article.definition >header h6{text-indent:0;display:inline-block;}article.definition >header ul{display:inline-block;list-style:none;margin:0;padding:0;}article.definition >header ul li{display:inline-block;padding:0 0.2em 0 0;}article.definition >header .visibility{display:none;}article.definition >header .visibility,article.definition >header .type{text-transform:lowercase;}article.definition >header .source-link{visibility:hidden;float:right;}article.definition >header .source-link:after{visibility:visible;content:"[SRC]";}article.definition .docstring{margin:0 0 0 1em;}article.definition .docstring pre{font-size:0.8em;white-space:pre-wrap;}.definition.package >header ul.nicknames{display:inline-block;list-style:none;margin:0;padding:0 0 0 1em;}.definition.package >header ul.nicknames li{display:inline;}.definition.package >header ul.nicknames:before{content:"(";}.definition.package >header ul.nicknames:after{content:")";}.definition.package ul.definitions{margin:0;list-style:none;padding:0 0 0 0.5em;}.definition.callable >header .name:before,.definition.type >header .name:before{content:"(";font-weight:normal;}.definition.callable >header .arguments:after,.definition.type >header .arguments:after{content:")";}.definition.callable >header .arguments .arguments:before,.definition.type >header .arguments .arguments:before{content:"(";}.definition.callable >header .arguments .argument,.definition.type >header .arguments .argument{padding:0;}.definition.callable >header .arguments .argument.lambda-list-keyword,.definition.type >header .arguments .argument.lambda-list-keyword{color:#991155;}.definition li>mark{background:none;border-left:0.3em solid #0088EE;padding-left:0.3em;display:block;}</style> </head> <body> <article class="project"> <header>   <h1>cl ktx</h1>   <span class="version">1.0.0</span>    <p class="description">An implementation of the Khronos KTX image file format</p>   </header> <section id="documentation"><article><h2 id="about cl-ktx">About cl-ktx</h2><p>This is an implementation of the <a class="external-link" href="https://registry.khronos.org/KTX/specs/1.0/ktxspec.v1.html">Khronos KTX</a> image file format.</p><h2 id="how to">How To</h2><p>Load the cl-ktx library, and invoke <code><a href="#FUNCTION%20ORG.SHIRAKUMO.KTX%3AREAD-FILE" class="xref">read-file</a></code> to read a file from any of the supported <a class="external-link" href="https://shinmera.github.io/binary-structures">binary-structures</a> backends.</p><p>The returned structure can be easily accessed. Since the image data is already pre-packed for upload to the GPU, you should be able to just iterate over the <code><a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AMIPMAPS" class="xref">mipmaps</a></code> and upload via <code>gl-tex-image-2d</code> etc. Note that the <code>gl-*</code> functions return the direct enum integers that you can pass to the relevant functions.</p><p>You can also write ktx files back out with <code><a href="#FUNCTION%20ORG.SHIRAKUMO.KTX%3AWRITE-FILE" class="xref">write-file</a></code> after constructing one from the raw data. You can set the desired enum keywords on the <code>gl-*</code> functions and it'll convert to the enum integer for you.</p></article></section>   <section id="system"> <h2>System Information</h2>  <div class="row"> <label for="version">Version:</label> <a id="version">1.0.0</a> </div>   <div class="row"> <label for="dependencies">Dependencies:</label> <ul id="dependencies"><li><a class="external" href="https://shinmera.github.io/binary-structures/">binary-structures</a></li><li><a class="external">cl-opengl</a></li><li><a class="external">trivial-features</a></li><li><a class="external" href="https://Shinmera.github.io/documentation-utils/">documentation-utils</a></li></ul> </div>   <div class="row" id="author"> <label for="author">Author:</label> <a href="mailto:shinmera@tymoon.eu">Nicolas Hafner</a> </div>   <div class="row"> <label for="license">License:</label> <a id="license" href="https://github.com/shinmera/cl-ktx/blob/HEAD/LICENSE">zlib</a> </div>   <div class="row"> <label for="homepage">Homepage:</label> <a id="homepage" href="https://shinmera.github.io/cl-ktx/">https://shinmera.github.io/cl-ktx/</a> </div>   <div class="row"> <label for="bug-tracker">Bug Tracker:</label> <a id="bug-tracker" href="https://github.com/shinmera/cl-ktx/issues">https://github.com/shinmera/cl-ktx/issues</a> </div>   <div class="row"> <label for="sources">Sources:</label> <a id="sources" href="https://github.com/shinmera/cl-ktx.git">https://github.com/shinmera/cl-ktx.git</a> </div>  </section>    <section id="index"> <h2>Definition Index</h2> <ul> <li> <article class="definition package" id="PACKAGE ORG.SHIRAKUMO.KTX"> <header> <h3> <a href="#PACKAGE%20ORG.SHIRAKUMO.KTX">ORG.SHIRAKUMO.KTX</a> </h3> <ul class="nicknames"></ul>  </header> <div class="docstring"><i>No documentation provided.</i></div> <ul class="definitions"> <li> <article class="definition structure" id="STRUCTURE ORG.SHIRAKUMO.KTX:FILE"> <header> <span class="visibility">EXTERNAL</span> <span class="type">STRUCTURE</span> <h4 class="name"> <a href="#STRUCTURE%20ORG.SHIRAKUMO.KTX%3AFILE">FILE</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments"></ul>  <a class="source-link" href="https://github.com/shinmera/cl-ktx/blob/HEAD/ktx.lisp#L31">Source</a>  </header> <div class="docstring"><pre>Representation of a KTX file.
+
+As per spec:
+KTX™ is a format for storing textures for OpenGL® and OpenGL® ES
+applications. It is distinguished by the simplicity of the loader
+required to instantiate a GL texture object from the file contents.
+
+The unpack alignment is 4. I.e. uncompressed pixel data is packed
+according to the rules described in section 8.4.4.1 of the OpenGL 4.4
+specification [OPENGL44] for a GL_UNPACK_ALIGNMENT of 4.
+
+Values listed in tables referred to in the OpenGL 4.4 specification
+[OPENGL44] may be supplemented by extensions. The references are given
+as examples and do not imply that all of those texture types can be
+loaded in OpenGL ES or earlier versions of OpenGL.
+
+Texture data in a KTX file are arranged so that the first pixel in the
+data stream for each face and/or array element is closest to the
+origin of the texture coordinate system. In OpenGL that origin is
+conventionally described as being at the lower left, but this
+convention is not shared by all image file formats and content
+creation tools, so there is abundant room for confusion.
+
+The desired texture axis orientation is often predetermined by, e.g. a
+content creation tool's or existing application's use of the
+image. Therefore it is strongly recommended that tools for generating
+KTX files clearly describe their behaviour, and provide an option to
+specify the texture axis origin and orientation relative to the
+logical orientation of the source image. At minimum they should
+provide a choice between top-left and bottom-left as origin for 2D
+source images, with the positive S axis pointing right. Where
+possible, the preferred default is to use the logical upper-left
+corner of the image as the texture origin. Note that this is contrary
+to the standard interpretation of GL texture coordinates. However, the
+majority of texture compression tools use this convention.
+
+As an aid to writing image manipulation tools and viewers, the logical
+orientation of the data in a KTX file may be indicated in the file's
+key/value metadata. Note that this metadata affects only the logical
+interpretation of the data, has no effect on the mapping from pixels
+in the file byte stream to texture coordinates. The recommended key to
+use is:
+
+KTXorientation
+It is recommended that viewing and editing tools support at least the
+following values:
+
+  S=r,T=d
+  S=r,T=u
+  S=r,T=d,R=i
+  S=r,T=u,R=o
+
+where
+
+  S indicates the direction of increasing S values
+  T indicates the direction of increasing T values
+  R indicates the direction of increasing R values
+  r indicates increasing to the right
+  l indicates increasing to the left
+  d indicates increasing downwards
+  u indicates increasing upwards
+  o indicates increasing out from the screen (moving towards viewer)
+  i indicates increasing in towards the screen (moving away from viewer)
+
+Although other orientations can be represented, it is recommended that
+tools that create KTX files use only the values listed above as other
+values may not be widely supported by other tools.
+
+See <a href="#FUNCTION%20ORG.SHIRAKUMO.KTX%3AREAD-FILE" class="xref">READ-FILE</a>
+See <a href="#FUNCTION%20ORG.SHIRAKUMO.KTX%3AWRITE-FILE" class="xref">WRITE-FILE</a>
+See <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AENDIANNESS" class="xref">ENDIANNESS</a>
+See <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AGL-TYPE" class="xref">GL-TYPE</a>
+See <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AGL-TYPE-SIZE" class="xref">GL-TYPE-SIZE</a>
+See <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AGL-FORMAT" class="xref">GL-FORMAT</a>
+See <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AGL-INTERNAL-FORMAT" class="xref">GL-INTERNAL-FORMAT</a>
+See <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AGL-BASE-INTERNAL-FORMAT" class="xref">GL-BASE-INTERNAL-FORMAT</a>
+See <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AWIDTH" class="xref">WIDTH</a>
+See <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AHEIGHT" class="xref">HEIGHT</a>
+See <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3ADEPTH" class="xref">DEPTH</a>
+See <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AARRAY-ELEMENT-COUNT" class="xref">ARRAY-ELEMENT-COUNT</a>
+See <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AFACE-COUNT" class="xref">FACE-COUNT</a>
+See <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AMIP-COUNT" class="xref">MIP-COUNT</a>
+See <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AMIPMAPS" class="xref">MIPMAPS</a>
+See <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AKV-STORE" class="xref">KV-STORE</a></pre></div> </article> </li>  <li> <article class="definition structure" id="STRUCTURE ORG.SHIRAKUMO.KTX:MIPMAP-LEVEL"> <header> <span class="visibility">EXTERNAL</span> <span class="type">STRUCTURE</span> <h4 class="name"> <a href="#STRUCTURE%20ORG.SHIRAKUMO.KTX%3AMIPMAP-LEVEL">MIPMAP-LEVEL</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments"></ul>  <a class="source-link" href="https://github.com/shinmera/cl-ktx/blob/HEAD/ktx.lisp#L22">Source</a>  </header> <div class="docstring"><pre>Representation of a mipmap level's graphical data.
+
+See <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3ASIZE" class="xref">SIZE</a>
+See <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3ADATA" class="xref">DATA</a></pre></div> </article> </li>  <li> <article class="definition function callable" id="FUNCTION ORG.SHIRAKUMO.KTX:READ-FILE"> <header> <span class="visibility">EXTERNAL</span> <span class="type">FUNCTION</span> <h4 class="name"> <a href="#FUNCTION%20ORG.SHIRAKUMO.KTX%3AREAD-FILE">READ-FILE</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">STORAGE</li>    <li class="argument lambda-list-keyword">&amp;REST</li>    <li class="argument">ARGS</li>  </ul>  <a class="source-link" href="https://github.com/shinmera/cl-ktx/blob/HEAD/ktx.lisp#L31">Source</a>  </header> <div class="docstring"><pre>Reads a file from a backend supported by binary-structures.
+
+This is, by default, one of:
+  - PATHNAME
+  - BINARY-STREAM
+  - OCTET-VECTOR
+  - FOREIGN-POINTER
+
+See <a href="#STRUCTURE%20ORG.SHIRAKUMO.KTX%3AFILE" class="xref">FILE (type)</a></pre></div> </article> </li>  <li> <article class="definition function callable" id="FUNCTION ORG.SHIRAKUMO.KTX:WRITE-FILE"> <header> <span class="visibility">EXTERNAL</span> <span class="type">FUNCTION</span> <h4 class="name"> <a href="#FUNCTION%20ORG.SHIRAKUMO.KTX%3AWRITE-FILE">WRITE-FILE</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">VALUE</li>    <li class="argument">STORAGE</li>    <li class="argument lambda-list-keyword">&amp;REST</li>    <li class="argument">ARGS</li>  </ul>  <a class="source-link" href="https://github.com/shinmera/cl-ktx/blob/HEAD/ktx.lisp#L31">Source</a>  </header> <div class="docstring"><pre>Writes the file to a backend supported by binary-structures.
+
+This is, by default, one of:
+  - PATHNAME
+  - BINARY-STREAM
+  - OCTET-VECTOR
+  - FOREIGN-POINTER
+
+See <a href="#STRUCTURE%20ORG.SHIRAKUMO.KTX%3AFILE" class="xref">FILE (type)</a></pre></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:ARRAY-ELEMENT-COUNT"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AARRAY-ELEMENT-COUNT">ARRAY-ELEMENT-COUNT</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><pre>Accesses the number of texture array elements in the data.
+
+As per spec:
+numberOfArrayElements specifies the number of array elements. If the
+texture is not an array texture, numberOfArrayElements must equal 0.
+
+See <a href="#STRUCTURE%20ORG.SHIRAKUMO.KTX%3AFILE" class="xref">FILE (type)</a></pre></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:(SETF ARRAY-ELEMENT-COUNT)"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3A%28SETF%20ARRAY-ELEMENT-COUNT%29">(SETF ARRAY-ELEMENT-COUNT)</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">VALUE</li>    <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><i>No documentation provided.</i></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:DATA"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3ADATA">DATA</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><pre>Accesses the mipmap level's pixel data.
+
+As per spec:
+The data is stored as follows within the opaque array:
+
+for each array_element in max(1, arrayElementCount)
+   for each face in max(1, faceCount)
+       for each z_slice in max(1, depth)
+           for each row or row_of_blocks in max(1, height)
+               for each pixel or block_of_pixels in width
+                   Byte data[format-specific-number-of-bytes]
+               end
+           end
+       end
+       Byte cubePadding[0-3]
+   end
+end
+
+For non-array cubemap textures (any texture where numberOfFaces is 6
+and numberOfArrayElements is 0) cubePadding contains between 0 and 3
+bytes of value 0x00 to ensure that the data in each face begins at a
+file offset that is a multiple of 4. In all other cases cubePadding is
+empty (0 bytes long). This is empty in the non-array cubemap case as
+well. The requirement of GL_UNPACK_ALIGNMENT = 4 means the size of
+uncompressed textures will always be a multiple of 4 bytes. All known
+compressed formats, that are usable for cubemaps, have block sizes
+that are a multiple of 4 bytes. The field is still shown in case a
+compressed format emerges with a block size that is not a multiple of
+4 bytes.
+
+See <a href="#STRUCTURE%20ORG.SHIRAKUMO.KTX%3AMIPMAP-LEVEL" class="xref">MIPMAP-LEVEL (type)</a></pre></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:(SETF DATA)"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3A%28SETF%20DATA%29">(SETF DATA)</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">VALUE</li>    <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><i>No documentation provided.</i></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:DEPTH"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3ADEPTH">DEPTH</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><pre>Accesses the depth of the pixel data.
+
+As per spec: 
+The size of the texture image for level 0, in pixels. No rounding to
+block sizes should be applied for block compressed textures.
+For 1D textures pixelHeight and pixelDepth must be 0. For 2D and cube
+textures pixelDepth must be 0.
+
+See <a href="#STRUCTURE%20ORG.SHIRAKUMO.KTX%3AFILE" class="xref">FILE (type)</a></pre></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:(SETF DEPTH)"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3A%28SETF%20DEPTH%29">(SETF DEPTH)</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">VALUE</li>    <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><i>No documentation provided.</i></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:ENDIANNESS"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AENDIANNESS">ENDIANNESS</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><pre>Accesses the endianness type of the file.
+
+Must be either :LITTLE-ENDIAN or :BIG-ENDIAN
+
+See <a href="#STRUCTURE%20ORG.SHIRAKUMO.KTX%3AFILE" class="xref">FILE (type)</a></pre></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:(SETF ENDIANNESS)"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3A%28SETF%20ENDIANNESS%29">(SETF ENDIANNESS)</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">VALUE</li>    <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><i>No documentation provided.</i></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:FACE-COUNT"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AFACE-COUNT">FACE-COUNT</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><pre>Accesses the number of cubemap faces in the data.
+
+As per spec:
+numberOfFaces specifies the number of cubemap faces. For cubemaps and
+cubemap arrays this should be 6. For non cubemaps this should be
+1. Cube map faces are stored in the order: +X, -X, +Y, -Y, +Z, -Z.
+Due to GL_OES_compressed_paletted_texture [OESCPT] not defining the
+interaction between cubemaps and its GL_PALETTE* formats, if
+`glInternalFormat` is one of its GL_PALETTE* format, numberOfFaces
+must be 1.
+
+See <a href="#STRUCTURE%20ORG.SHIRAKUMO.KTX%3AFILE" class="xref">FILE (type)</a></pre></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:(SETF FACE-COUNT)"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3A%28SETF%20FACE-COUNT%29">(SETF FACE-COUNT)</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">VALUE</li>    <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><i>No documentation provided.</i></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:GL-BASE-INTERNAL-FORMAT"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AGL-BASE-INTERNAL-FORMAT">GL-BASE-INTERNAL-FORMAT</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><pre>Accesses the basic GL Internal Texture Format the data should be uploaded as.
+
+As per spec:
+For both compressed and uncompressed textures, glBaseInternalFormat
+specifies the base internal format of the texture, usually one of the
+values from table 8.11 of the OpenGL 4.4 specification [OPENGL44]
+(RGB, RGBA, ALPHA, etc.). For uncompressed textures, this value will
+be the same as glFormat and is used as the internalformat parameter
+when loading into a context that does not support sized formats, such
+as an unextended OpenGL ES 2.0 context.
+
+See <a href="#STRUCTURE%20ORG.SHIRAKUMO.KTX%3AFILE" class="xref">FILE (type)</a></pre></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:(SETF GL-BASE-INTERNAL-FORMAT)"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3A%28SETF%20GL-BASE-INTERNAL-FORMAT%29">(SETF GL-BASE-INTERNAL-FORMAT)</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">VALUE</li>    <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><i>No documentation provided.</i></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:GL-FORMAT"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AGL-FORMAT">GL-FORMAT</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><pre>Accesses the GL Pixel Format the data is stored as.
+
+As per spec:
+For compressed textures, glFormat must equal 0. For uncompressed
+textures, glFormat specifies the format parameter passed to
+glTex{,Sub}Image*D, usually one of the values from table 8.3 of the
+OpenGL 4.4 specification [OPENGL44] (RGB, RGBA, BGRA, etc.)
+
+See <a href="#STRUCTURE%20ORG.SHIRAKUMO.KTX%3AFILE" class="xref">FILE (type)</a></pre></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:(SETF GL-FORMAT)"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3A%28SETF%20GL-FORMAT%29">(SETF GL-FORMAT)</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">VALUE</li>    <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><i>No documentation provided.</i></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:GL-INTERNAL-FORMAT"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AGL-INTERNAL-FORMAT">GL-INTERNAL-FORMAT</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><pre>Accesses the GL Internal Texture Format the data should be uploaded as.
+
+As per spec:
+For compressed textures, glInternalFormat must equal the compressed
+internal format, usually one of the values from table 8.14 of the
+OpenGL 4.4 specification [OPENGL44]. For uncompressed textures,
+glInternalFormat specifies the internalformat parameter passed to
+glTexStorage*D or glTexImage*D, usually one of the sized internal
+formats from tables 8.12 &amp; 8.13 of the OpenGL 4.4 specification
+[OPENGL44]. The sized format should be chosen to match the bit depth
+of the data provided. glInternalFormat is used when loading both
+compressed and uncompressed textures, except when loading into a
+context that does not support sized formats, such as an unextended
+OpenGL ES 2.0 context where the internalformat parameter is required
+to have the same value as the format parameter.
+
+See <a href="#STRUCTURE%20ORG.SHIRAKUMO.KTX%3AFILE" class="xref">FILE (type)</a></pre></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:(SETF GL-INTERNAL-FORMAT)"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3A%28SETF%20GL-INTERNAL-FORMAT%29">(SETF GL-INTERNAL-FORMAT)</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">VALUE</li>    <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><i>No documentation provided.</i></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:GL-TYPE"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AGL-TYPE">GL-TYPE</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><pre>Accesses the GL Pixel Type the data is stored as.
+
+As per spec:
+For compressed textures, glType must equal 0. For uncompressed
+textures, glType specifies the type parameter passed to
+glTex{,Sub}Image*D, usually one of the values from table 8.2 of the
+OpenGL 4.4 specification [OPENGL44] (UNSIGNED_BYTE,
+UNSIGNED_SHORT_5_6_5, etc.)
+
+See <a href="#STRUCTURE%20ORG.SHIRAKUMO.KTX%3AFILE" class="xref">FILE (type)</a></pre></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:(SETF GL-TYPE)"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3A%28SETF%20GL-TYPE%29">(SETF GL-TYPE)</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">VALUE</li>    <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><i>No documentation provided.</i></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:GL-TYPE-SIZE"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AGL-TYPE-SIZE">GL-TYPE-SIZE</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><pre>Accesses the size of the GL Pixel Type in octets.
+
+As per spec:
+glTypeSize specifies the data type size that should be used when
+endianness conversion is required for the texture data stored in the
+file. If glType is not 0, this should be the size in bytes
+corresponding to glType. For texture data which does not depend on
+platform endianness, including compressed texture data, glTypeSize
+must equal 1.
+
+See <a href="#STRUCTURE%20ORG.SHIRAKUMO.KTX%3AFILE" class="xref">FILE (type)</a></pre></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:(SETF GL-TYPE-SIZE)"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3A%28SETF%20GL-TYPE-SIZE%29">(SETF GL-TYPE-SIZE)</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">VALUE</li>    <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><i>No documentation provided.</i></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:HEIGHT"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AHEIGHT">HEIGHT</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><pre>Accesses the height of the pixel data.
+
+As per spec: 
+The size of the texture image for level 0, in pixels. No rounding to
+block sizes should be applied for block compressed textures.
+For 1D textures pixelHeight and pixelDepth must be 0. For 2D and cube
+textures pixelDepth must be 0.
+
+See <a href="#STRUCTURE%20ORG.SHIRAKUMO.KTX%3AFILE" class="xref">FILE (type)</a></pre></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:(SETF HEIGHT)"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3A%28SETF%20HEIGHT%29">(SETF HEIGHT)</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">VALUE</li>    <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><i>No documentation provided.</i></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:KV-STORE"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AKV-STORE">KV-STORE</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">FILE</li>  </ul>  </header> <div class="docstring"><pre>Accesses the key-value store of the file.
+
+Always returns a fresh hash-table.
+
+Setting this will not preserve referential transparency. You may set
+it as either an ALIST or a HASH-TABLE.
+
+As per spec:
+Keys that begin with the 3 ascii characters 'KTX' or 'ktx' are
+reserved and must not be used except as described by this spec (this
+version of the KTX spec defines a single key, see FILE).
+
+See <a href="#STRUCTURE%20ORG.SHIRAKUMO.KTX%3AFILE" class="xref">FILE (type)</a></pre></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:(SETF KV-STORE)"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3A%28SETF%20KV-STORE%29">(SETF KV-STORE)</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">TABLE</li>    <li class="argument">FILE</li>  </ul>  </header> <div class="docstring"><i>No documentation provided.</i></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:MIP-COUNT"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AMIP-COUNT">MIP-COUNT</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><pre>Accesses the number of mipmap levels in the data.
+
+As per spec:
+numberOfMipmapLevels must equal 1 for non-mipmapped textures. For
+mipmapped textures, it equals the number of mipmaps. Mipmaps are
+stored in order from largest size to smallest size. The first mipmap
+level is always level 0. A KTX file does not need to contain a
+complete mipmap pyramid. If numberOfMipmapLevels equals 0, it
+indicates that a full mipmap pyramid should be generated from level 0
+at load time (this is usually not allowed for compressed formats).
+
+For the GL_PALETTE* formats, this equals the number of mipmaps and is
+passed as the levels, parameter when uploading to OpenGL
+{,ES}. However all levels are packed into a single block of data along
+with the palette so numberOfMipmapLevels is considered to be 1 in the
+for loop over the data. Individual mipmaps are not identifiable.
+
+See <a href="#STRUCTURE%20ORG.SHIRAKUMO.KTX%3AFILE" class="xref">FILE (type)</a>
+See <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AMIPMAPS" class="xref">MIPMAPS</a></pre></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:(SETF MIP-COUNT)"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3A%28SETF%20MIP-COUNT%29">(SETF MIP-COUNT)</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">VALUE</li>    <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><i>No documentation provided.</i></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:MIPMAPS"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AMIPMAPS">MIPMAPS</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><pre>Accesses the vector of mipmap storage levels.
+
+Even the base level is stored as a mipmap-level.
+
+See <a href="#STRUCTURE%20ORG.SHIRAKUMO.KTX%3AFILE" class="xref">FILE (type)</a>
+See <a href="#STRUCTURE%20ORG.SHIRAKUMO.KTX%3AMIPMAP-LEVEL" class="xref">MIPMAP-LEVEL (type)</a></pre></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:(SETF MIPMAPS)"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3A%28SETF%20MIPMAPS%29">(SETF MIPMAPS)</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">VALUE</li>    <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><i>No documentation provided.</i></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:SIZE"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3ASIZE">SIZE</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><pre>Accesses the size of the mipmap's data vector in octets.
+
+As per spec:
+For most textures imageSize is the number of bytes of pixel data in
+the current LOD level. This includes all array layers, all z slices,
+all faces, all rows (or rows of blocks) and all pixels (or blocks) in
+each row for the mipmap level. It does not include any bytes in
+mipPadding.
+
+The exception is non-array cubemap textures (any texture where
+numberOfFaces is 6 and numberOfArrayElements is 0). For these textures
+imageSize is the number of bytes in each face of the texture for the
+current LOD level, not including bytes in cubePadding or mipPadding.
+
+See <a href="#STRUCTURE%20ORG.SHIRAKUMO.KTX%3AMIPMAP-LEVEL" class="xref">MIPMAP-LEVEL (type)</a></pre></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:(SETF SIZE)"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3A%28SETF%20SIZE%29">(SETF SIZE)</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">VALUE</li>    <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><i>No documentation provided.</i></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:WIDTH"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3AWIDTH">WIDTH</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><pre>Accesses the width of the pixel data.
+
+As per spec: 
+The size of the texture image for level 0, in pixels. No rounding to
+block sizes should be applied for block compressed textures.
+For 1D textures pixelHeight and pixelDepth must be 0. For 2D and cube
+textures pixelDepth must be 0.
+
+See <a href="#STRUCTURE%20ORG.SHIRAKUMO.KTX%3AFILE" class="xref">FILE (type)</a></pre></div> </article> </li>  <li> <article class="definition generic-function callable" id="GENERIC-FUNCTION ORG.SHIRAKUMO.KTX:(SETF WIDTH)"> <header> <span class="visibility">EXTERNAL</span> <span class="type">GENERIC-FUNCTION</span> <h4 class="name"> <a href="#GENERIC-FUNCTION%20ORG.SHIRAKUMO.KTX%3A%28SETF%20WIDTH%29">(SETF WIDTH)</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments">  <li class="argument">VALUE</li>    <li class="argument">ENTRY</li>  </ul>  </header> <div class="docstring"><i>No documentation provided.</i></div> </article> </li> </ul> </article> </li> </ul> </section>  </article> <script>window.addEventListener("DOMContentLoaded", function(){
+    var unmarkElement = function(el){
+        if(el.tagName === "mark" || el.tagName === "MARK"){
+            [].forEach.call(el.childNodes, function(child){
+                el.parentNode.insertBefore(child, el);
+            });
+            el.parentNode.removeChild(el);
+        }else if(el.parentNode.tagName === "mark"){
+            return unmarkElement(el.parentNode);
+        }
+        return null;
+    }
+
+    var unmarkAll = function(root){
+        root = root || document;
+        [].forEach.call(root.querySelectorAll("mark"), unmarkElement);
+    }
+    
+    var markElement = function(el){
+        if(el.parentNode.tagName === "mark" || el.parentNode.tagName === "MARK"){
+            return el.parentNode;
+        } else {
+            unmarkAll();
+            var marked = document.createElement("mark");
+            el.parentNode.insertBefore(marked, el);
+            marked.appendChild(el);
+            return marked;
+        }
+    }
+
+    var markFragmented = function(){
+        if(window.location.hash){
+            var el = document.getElementById(decodeURIComponent(window.location.hash.substr(1)));
+            if(el) markElement(el);
+        }
+    }
+
+    var registerXrefLink = function(link){
+        var el = document.getElementById(decodeURIComponent(link.getAttribute("href").substr(1)));
+        if(el){
+            link.addEventListener("click", function(){
+                markElement(el);
+            });
+        }
+    }
+
+    var registerXrefLinks = function(root){
+        root = root || document;
+        [].forEach.call(root.querySelectorAll("a.xref"), registerXrefLink);
+    }
+
+    markFragmented();
+    registerXrefLinks();
+}); </script> </body> </html> 

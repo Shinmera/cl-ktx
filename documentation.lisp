@@ -7,13 +7,13 @@
 (in-package #:org.shirakumo.ktx)
 
 (docs:define-docs
-  (type mipmap-level
+  (cl:type mipmap-level
     "Representation of a mipmap level's graphical data.
 
 See SIZE
 See DATA")
   
-  (type file
+  (cl:type file
     "Representation of a KTX file.
 
 As per spec:
@@ -139,8 +139,6 @@ OpenGL 4.4 specification [OPENGL44] (UNSIGNED_BYTE,
 UNSIGNED_SHORT_5_6_5, etc.)
 
 See FILE (type)")
-
-  See FILE (type)
   
   (function gl-type-size
     "Accesses the size of the GL Pixel Type in octets.
