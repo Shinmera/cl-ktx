@@ -11,9 +11,21 @@
   (kv-string (string (bs:slot size)))
   (NIL (vector uint8 (- 3 (mod (+ 3 (bs:slot size)) 4)))))
 
+(defmethod print-object ((entry kv-entry) stream)
+  (print-unreadable-object (entry stream :type T)
+    (let* ((string (kv-entry-kv-string entry))
+           (sep (position #\Nul string))
+           (key (subseq string 0 sep))
+           (val (subseq string (1+ sep))))
+      (format stream "~a: ~a" key val))))
+
 (bs:define-io-structure mipmap-level
   (size uint32 :align 4)
   (data (vector uint8 (bs:slot size))))
+
+(defmethod print-object ((level mipmap-level) stream)
+  (print-unreadable-object (level stream :type T :identity T)
+    (format stream "~d bytes" (size level))))
 
 (bs:define-io-structure file
   #(#xAB #x4B #x54 #x58 #x20 #x31 #x31 #xBB #x0D #x0A #x1A #x0A)
@@ -34,6 +46,13 @@
   (kv-store-size uint32)
   (kv-store (vector uint8 (bs:slot kv-store-size)))
   (mipmaps (vector mipmap-level (max 1 (bs:slot mip-count)))))
+
+(defmethod print-object ((file file) stream)
+  (print-unreadable-object (file stream :type T)
+    (format stream "~ax~ax~a ~a ~a"
+            (width file) (max 1 (height file)) (max 1 (depth file))
+            (cffi:foreign-enum-keyword '%gl::enum (gl-type file))
+            (cffi:foreign-enum-keyword '%gl::enum (gl-format file)))))
 
 (defmacro define-accessors (type &rest names)
   `(progn ,@(loop for name in names
