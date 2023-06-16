@@ -21,6 +21,7 @@
 
 (bs:define-io-structure mipmap-level
   (size uint32 :align 4)
+  ;; FIXME: this is not right because for cube maps the spec is really dumb.
   (data (vector uint8 (bs:slot size))))
 
 (defmethod print-object ((level mipmap-level) stream)
