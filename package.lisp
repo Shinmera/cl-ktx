@@ -14,7 +14,7 @@
    #:mipmap-level
    #:make-mipmap-level
    #:file
-   #:make-file
+   #:create-file
    #:read-file
    #:write-file
    #:endianness

@@ -103,10 +103,17 @@ See FACE-COUNT
 See MIP-COUNT
 See MIPMAPS
 See KV-STORE
-See MAKE-FILE")
+See CREATE-FILE")
 
-  (function make-file
+  (function create-file
     "Create a new file instance.
+
+PAYLOADS should be a vector of data vectors to use for the mipmap
+levels to include in the file, stored in the correct order starting
+with level 0.
+
+If GL-INTERNAL-FORMAT, GL-BASE-INTERNAL-FORMAT, or GL-TYPE-SIZE are
+not supplied, they are inferred based on the GL-TYPE and GL-FORMAT.
 
 See FILE (type)")
   

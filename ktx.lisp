@@ -109,3 +109,70 @@
       (setf (file-kv-store file) vector)
       (setf (file-kv-store-size file) size))
     table))
+
+;; From trial
+(defun infer-internal-format (pixel-type pixel-format)
+  (intern
+   (format NIL "~a~a"
+           (ecase pixel-format
+             ((:r :red) :r)
+             ((:rg :gr) :rg)
+             ((:rgb :bgr) :rgb)
+             ((:rgba :bgra) :rgba))
+           (ecase pixel-type
+             ((:byte :unsigned-byte) :8)
+             ((:short :unsigned-short) :16)
+             ((:int :unsigned-int) :32)
+             ((:short-float) :16f)
+             ((:float) :32f)
+             (:unsigned-int-5-9-9-9-rev :9-e5)))
+   "KEYWORD"))
+
+(defun pixel-data-stride (pixel-type pixel-format)
+  (* (ecase pixel-format
+       ((:r :red :red-integer :stencil-index :depth-component :depth-stencil)
+        1)
+       ((:rg :gr :rg-integer)
+        2)
+       ((:rgb :bgr :rgb-integer :bgr-integer)
+        3)
+       ((:rgba :bgra :rgba-integer :bgra-integer)
+        4))
+     (ecase pixel-type
+       ((:byte :unsigned-byte)
+        1)
+       ((:unsigned-byte-3-3-2 :unsigned-byte-2-3-3-rev)
+        1/3)
+       ((:short :unsigned-short :short-float)
+        2)
+       ((:unsigned-short-5-6-5 :unsigned-short-5-6-5-rev
+         :unsigned-short-5-5-5-1 :unsigned-short-1-5-5-5-rev)
+        2/3)
+       ((:unsigned-short-4-4-4-4 :unsigned-short-4-4-4-4-rev)
+        2/4)
+       ((:int :unsigned-int :float 
+              :unsigned-int-24-8 :unsigned-int-8-24-rev-mesa :float-32-unsigned-int-24-8-rev)
+        4)
+       ((:unsigned-int-5-9-9-9-rev :unsigned-int-10-10-10-2 :unsigned-int-2-10-10-10-rev)
+        4/3)
+       ((:unsigned-int-8-8-8-8 :unsigned-int-8-8-8-8-rev)
+        4/4))))
+
+(defun create-file (payloads gl-type gl-format &key (width (length (aref payloads 0))) (height 0) (depth 0) (face-count 1) (array-element-count 0) (mip-count (length payloads))
+                                                    gl-internal-format gl-base-internal-format gl-type-size keys)
+  (let ((file (make-file :endianness #+little-endian :little-endian #+big-endian :big-endian
+                         :width width :height height :depth depth :face-count face-count
+                         :array-element-count array-element-count :mip-count mip-count))
+        (mips (make-array (length payloads))))
+    (setf (gl-type file) gl-type)
+    (setf (gl-format file) gl-format)
+    (setf (kv-store file) keys)
+    (setf (gl-type-size file) (or gl-type-size
+                                  (pixel-data-stride gl-type gl-format)))
+    (setf (gl-internal-format file) (or gl-internal-format
+                                        (infer-internal-format gl-type gl-format)))
+    (setf (gl-base-internal-format file) (or gl-base-internal-format gl-format))
+    (loop for i from 0 below (length payloads)
+          for payload = (aref payloads i)
+          do (setf (aref mips i) (make-mipmap-level :size (length payload) :data payload)))
+    file))
