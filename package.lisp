@@ -12,7 +12,9 @@
   (:use #:cl #:org.shirakumo.binary-structures.types)
   (:export
    #:mipmap-level
+   #:make-mipmap-level
    #:file
+   #:make-file
    #:read-file
    #:write-file
    #:endianness

@@ -12,6 +12,11 @@
 
 See SIZE
 See DATA")
+
+  (function make-mipmap-level
+    "Create a new mipmap-level instance.
+
+See MIPMAP-LEVEL (type)")
   
   (cl:type file
     "Representation of a KTX file.
@@ -97,7 +102,13 @@ See ARRAY-ELEMENT-COUNT
 See FACE-COUNT
 See MIP-COUNT
 See MIPMAPS
-See KV-STORE")
+See KV-STORE
+See MAKE-FILE")
+
+  (function make-file
+    "Create a new file instance.
+
+See FILE (type)")
   
   (function read-file
     "Reads a file from a backend supported by binary-structures.
