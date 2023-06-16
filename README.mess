@@ -1,0 +1,9 @@
+## About cl-ktx
+This is an implementation of the "Khronos KTX"(https://registry.khronos.org/KTX/specs/1.0/ktxspec.v1.html) image file format.
+
+## How To
+Load the cl-ktx library, and invoke ``read-file`` to read a file from any of the supported "binary-structures"(https://shinmera.github.io/binary-structures) backends.
+
+The returned structure can be easily accessed. Since the image data is already pre-packed for upload to the GPU, you should be able to just iterate over the ``mipmaps`` and upload via ``gl-tex-image-2d`` etc. Note that the ``gl-*`` functions return the direct enum integers that you can pass to the relevant functions.
+
+You can also write ktx files back out with ``write-file`` after constructing one from the raw data. You can set the desired enum keywords on the ``gl-*`` functions and it'll convert to the enum integer for you.
