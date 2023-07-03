@@ -1,14 +1,8 @@
-#|
- This file is a part of cl-ktx
- (c) 2023 Shirakumo http://tymoon.eu (shinmera@tymoon.eu)
- Author: Nicolas Hafner <shinmera@tymoon.eu>
-|#
-
 (asdf:defsystem cl-ktx
   :version "1.0.0"
   :license "zlib"
-  :author "Nicolas Hafner <shinmera@tymoon.eu>"
-  :maintainer "Nicolas Hafner <shinmera@tymoon.eu>"
+  :author "Yukari Hafner <shinmera@tymoon.eu>"
+  :maintainer "Yukari Hafner <shinmera@tymoon.eu>"
   :description "An implementation of the Khronos KTX image file format"
   :homepage "https://shinmera.github.io/cl-ktx/"
   :bug-tracker "https://github.com/shinmera/cl-ktx/issues"
