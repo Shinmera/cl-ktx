@@ -4,9 +4,9 @@
   :author "Yukari Hafner <shinmera@tymoon.eu>"
   :maintainer "Yukari Hafner <shinmera@tymoon.eu>"
   :description "An implementation of the Khronos KTX image file format"
-  :homepage "https://shinmera.github.io/cl-ktx/"
-  :bug-tracker "https://github.com/shinmera/cl-ktx/issues"
-  :source-control (:git "https://github.com/shinmera/cl-ktx.git")
+  :homepage "https://shinmera.com/docs/cl-ktx/"
+  :bug-tracker "https://shinmera.com/project/cl-ktx/issues"
+  :source-control (:git "https://shinmera.com/project/cl-ktx.git")
   :serial T
   :components ((:file "package")
                (:file "ktx")
